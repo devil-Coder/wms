@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="wms" ng-controller="wmsctrl">
 <head>
+    <base href="/login">
     <title>Login|WMS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
@@ -48,6 +49,12 @@
                     </div>
                     <input class="form-control" type="text" ng-model="workerLogin.uid" placeholder="UID">
                     <input class="form-control" type="password" ng-model="workerLogin.password" placeholder="Password">
+                    <div ng-if="message.content">
+                        <div class="alert alert-danger" ng-if="message.error"><b>{{message.content}}</b></div>
+                        <div class="alert alert-success" ng-if="!message.error">
+                            <b>{{message.content}}</b>
+                        </div>
+                    </div>
                     <div class="action">
                         <button class="btn btn-primary signup" >Login</button>
                     </div>

@@ -29,5 +29,22 @@ router.post('/register', function(req, res, next) {
 router.get('/login', function(req, res, next) {
     res.render('login');
 });
+router.post('/login', function(req, res, next) {
+    worker.findOne({uid : req.body.uid},(err,user)=>{
+        console.log(user);
+        if(err)
+            console.log(err);
+        else if(!user){
+            res.send({code : 1,message : req.body.uid+" doesn't exists."});
+        }
+        else{
+            if(user.password === req.body.password){
+                res.send({code : 0,message : rew.body.uid+" is successfully loggedIn."});
+            }else{
+                res.send({code : 1,message : "Incorrect Password for "+req.body.uid});
+            }
+        }
+    })
+});
 
 module.exports = router;

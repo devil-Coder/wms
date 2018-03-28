@@ -29,7 +29,7 @@ app.controller('wmsctrl',['$scope','$http','$location','$routeParams','$interval
                 $scope.regData = response.data;
                 if($scope.regData.code ==0){
                     $scope.message = {
-                        content : "Success! Yout UID is "+ $scope.regData.uid,
+                        content : "Success! Yout UID is "+ $scope.regData.uid+'. Please remember this for login.',
                         error : false
                     };
                 }else{
@@ -58,12 +58,13 @@ app.controller('wmsctrl',['$scope','$http','$location','$routeParams','$interval
             $scope.loginData = response.data;
             if($scope.loginData.code ==0){
                 $scope.message = {
-                    content : "Successfully loggedIn.",
+                    content : $scope.loginData.message,
                     error : false
                 };
+                window.location.href = '/dashboard';
             }else{
                 $scope.message = {
-                    content : "Incorrect UID or Password",
+                    content : $scope.loginData.message,
                     error : true
                 }
             }
