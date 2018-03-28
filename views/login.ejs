@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="wms" ng-controller="wmsctrl">
+<head>
+    <title>Login|WMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- styles -->
+    <link href="./assets/css/styles.css" rel="stylesheet">
+
+
+    <!--Angular Goes Here-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <script language="javascript" type="text/javascript" src="/javascripts/controllers/index.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="login-bg">
+<div class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Logo -->
+                <div class="logo">
+                    <h1><a href="index.html">Workforce Management System</a></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-content container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-wrapper">
+                <form class="box" ng-submit="getLogin()" style="padding : 5%;">
+                    <div class="content-wrap">
+
+                        <h7>Your Unique Registration Number is :</h7>
+                        <h6>Sign In</h6>
+
+                    </div>
+                    <input class="form-control" type="text" ng-model="workerLogin.uid" placeholder="UID">
+                    <input class="form-control" type="password" ng-model="workerLogin.password" placeholder="Password">
+                    <div class="action">
+                        <button class="btn btn-primary signup" >Login</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="./assets/js/custom.js"></script>
+</body>
+</html>
