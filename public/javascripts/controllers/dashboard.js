@@ -2,23 +2,23 @@ var app = angular.module('wms',["ngRoute"]);
 
 app.config(function($routeProvider){
     $routeProvider.when("/",{
-        controller : "wmsctrl"
+        controller : "editorController"
     })
-    .when("/payslip",{
-            controller : "wmsctrl",
+        .when("/payslip",{
+            controller : "editorController",
             templateUrl : "/ejs/dashboard/payslip.ejs"
         })
-    .when("/bank",{
-        controller : "wmsctrl",
-        templateUrl : "/ejs/dashboard/bank.ejs"
-    })
+        .when("/bank",{
+            controller : "editorController",
+            templateUrl : "/ejs/dashboard/bank.ejs"
+        })
         .when("/leave",{
-            controller : "wmsctrl",
+            controller : "editorController",
             templateUrl : "/ejs/dashboard/leave.ejs"
         })
         .otherwise({
-        template : "URL not found !"
-    });
+            template : "URL not found !"
+        });
 });
 
 app.controller('wmsctrl',['$scope','$http','$location','$routeParams','$interval','$timeout',function ($scope,$http,$location,$routeParams,$interval,$timeout) {
@@ -78,32 +78,4 @@ app.controller('wmsctrl',['$scope','$http','$location','$routeParams','$interval
         }
     }
 
-    $scope.setPin = ()=>{
-        if($scope.workerData.pin.length>6  || $scope.workerData.pin.length<4 ){
-            $scope.message = {
-                content : "PIN must be 4-6 character long!",
-                error : true
-            };
-        }else{
-            $http.post('/updatepin',$scope.workerData).then(successCallback, errorCallback);
-
-            function successCallback(response) {
-                $scope.pinData = response.data;
-                if($scope.pinData.code ==0){
-                    $scope.message = {
-                        content : $scope.pinData.message,
-                        error : false
-                    };
-                }else{
-                    $scope.message = {
-                        content : $scope.pinData.message,
-                        error : true
-                    }
-                }
-            }
-            function errorCallback(error) {
-                console.log("Data could not be Obtained !" + error);
-            }
-        }
-    }
 }]);

@@ -13,6 +13,9 @@ var workerSchema=new mongoose.Schema({
     experience : Number,
     nation : String,
     appliedFor : String,
+    accountNumber : String,
+    numberOfLeave : {type : Number, default : 0},
+    pin : String,
     admin : {type : Boolean, default : false}
 });
 
