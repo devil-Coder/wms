@@ -15,16 +15,12 @@
         <div class="panel-body">
 
             <div>
-                <h4>From</h4>
-                <p>
-                <div class="bfh-datepicker" data-format="y-m-d" data-date="today" ng-model="leave.from"></div>
-                </p>
+                <label for="from">From : </label>
+                <input type="date" id="from" class="bfh-datepicker" data-format="y-m-d" data-date="today" ng-model="leaveDates.from"></input>
             </div>
             <div>
-                <h4>To</h4>
-                <p>
-                <div class="bfh-datepicker" data-format="y-m-d" data-date="today" ng-model="leave.to"></div>
-                </p>
+                <label for="to">To : </label>
+                <input type="date" id="from" class="bfh-datepicker" data-format="y-m-d" data-date="today" ng-model="leaveDates.to"></input>
             </div>
 
             <div ng-if="message.content">

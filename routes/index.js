@@ -4,6 +4,7 @@ var randomstring = require("randomstring");
 var jwt = require('jsonwebtoken');
 
 var worker = require('../model/worker.js');
+var leave = require('../model/leaves.js');
 var authenticate = require('../authenticate');
 
 /* GET home page. */
@@ -96,22 +97,35 @@ router.post('/updatepin', function(req, res, next) {
     })
 });
 router.post('/applyleave', function(req, res, next) {
-    worker.findOne({accountNumber : req.body.accountNumber},(err,user)=>{
+    var userData = req.cookies['wms'];
+    worker.findOne({accountNumber : userData.accountNumber},(err,user)=>{
         if(err)
             console.log(err);
         else if(!user){
-            res.send({code : 1,message : "Account Number "+ req.body.accountNumber+" doesn't exists."});
+                res.send({code : 1,message : "Unauthorised Access!!"});
             }
-            else{
-                worker.update({accountNumber : req.body.accountNumber},{pin : req.body.pin},(err,done)=>{
-                    if(err){
-                        res.send({code : 0,message : "something went wrong!"});
-                    }else{
-                        res.send({code : 0,message : "Pin set. New PIN is "+req.body.pin});
-                    }
-                })
-            }
-        })
+        else{
+            var dates = {
+                from : new Date(req.body.from).getTime(),
+                to : new Date(req.body.to).getTime()
+            };
+            console.log(dates.to - dates.from);
+            var leaveData = new leave({
+                'applicant.name' : userData.name,
+                'applicant.email' : userData.email,
+                'applicant.worksAs' : userData.appliedFor,
+                'dates.to' : dates.from,
+                'dates.from' : dates.to
+            });
+            leaveData.save((err,done)=>{
+                if(err){
+                    console.log(err);
+                }else{
+                    res.send({code : 0,message : "Leave placed !"});
+                }
+            })
+        }
+    })
 });
 
 module.exports = router;

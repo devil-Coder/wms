@@ -116,6 +116,7 @@ app.controller('wmsctrl',['$scope','$http','$location','$routeParams','$interval
         }
     }
     $scope.applyLeave = ()=>{
+        console.log($scope.leaveDates);
         $http.post('/applyleave',$scope.leaveDates).then(successCallback, errorCallback);
 
         function successCallback(response) {
