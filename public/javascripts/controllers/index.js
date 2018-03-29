@@ -81,6 +81,7 @@ app.controller('wmsctrl',['$scope','$http','$location','$routeParams','$interval
 
         function successCallback(response) {
             $scope.user = response.data;
+            $scope.user.netSalary = $scope.user.dailyPay*30 - ($scope.user.numberOfLeave*50);
         }
         function errorCallback(error) {
             console.log("Data could not be Obtained !" + error);

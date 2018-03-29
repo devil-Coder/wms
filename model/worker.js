@@ -15,6 +15,7 @@ var workerSchema=new mongoose.Schema({
     appliedFor : String,
     accountNumber : String,
     numberOfLeave : {type : Number, default : 0},
+    dailyPay : Number,
     pin : String,
     admin : {type : Boolean, default : false}
 });

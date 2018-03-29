@@ -18,6 +18,7 @@ router.post('/register', function(req, res, next) {
         length: 12,
         charset: '0123456789'
     });
+    data.dailyPay = data.appliedFor == 'Employee'?100:200;
     data.save((err,doc)=>{
         if(err)
             console.log(err);
@@ -85,7 +86,8 @@ router.post('/updatepin', function(req, res, next) {
         else{
             worker.update({accountNumber : req.body.accountNumber},{pin : req.body.pin},(err,done)=>{
                 if(err){
-                    res.send({code : 0,message : "Something went wrong!"});
+                    console.log(err);
+                    res.send({code : 1,message : "Something went wrong!"});
                 }else{
                     res.send({code : 0,message : "Pin set.\n New PIN is "+req.body.pin});
                 }

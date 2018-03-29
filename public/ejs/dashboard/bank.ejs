@@ -1,26 +1,25 @@
 <div class="col-md-10" ng-init="getUserInfo()">
     <fieldset>
-        <legend>Bank Account</legend>
+        <legend>Bank Account : </legend>
         <form ng-submit="setPin()">
             <div class="form-group">
-                <label class="col-md-2 control-label" for="text-field">Name:</label>
                 <div class="col-md-10">
-                    <input class="form-control" placeholder="Please enter your name" type="text" ng-model="user.name">
+                    <p><b>Name</b> : <span>{{user.name | uppercase}}</span></p>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-md-2 control-label" for="text-field">Account No.</label>
                 <div class="col-md-10">
-                    <input class="form-control" ng-model="user.accountNumber" placeholder="Account Number" type="text">
+                    <p><b>Account No. </b>: <span>{{user.accountNumber}}</span></p>
+
                 </div>
 
             </div>
 
-            <div class="form-group">
-                <label class="col-md-2 control-label">Set Pin</label>
+            <div class="form-inline-group">
                 <div class="col-md-10">
-                    <input class="form-control" ng-model="user.pin" placeholder="SET PIN" type="password">
+                    <label for="pin">PIN</label>
+                    <input class="form-control form-control-lg-4" id="pin" ng-model="user.pin" placeholder="SET PIN" type="password">
                     <br>
                     <div ng-if="message.content">
                         <div class="alert alert-danger" ng-if="message.error"><b>{{message.content}}</b></div>
