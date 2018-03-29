@@ -3,7 +3,7 @@
 <link href="./assets/vendors/select/bootstrap-select.min.css" rel="stylesheet">
 <link href="./assets/vendors/tags/css/bootstrap-tags.css" rel="stylesheet">
 <div class="col-md-12">
-    <form class="content-box-large">
+    <form class="content-box-large" ng-submit="applyLeave()">
         <div class="panel-heading">
             <div class="panel-title">Apply for Leave</div>
 
@@ -17,13 +17,13 @@
             <div>
                 <h4>From</h4>
                 <p>
-                <div class="bfh-datepicker" data-format="y-m-d" data-date="today"></div>
+                <div class="bfh-datepicker" data-format="y-m-d" data-date="today" ng-model="leave.from"></div>
                 </p>
             </div>
             <div>
                 <h4>To</h4>
                 <p>
-                <div class="bfh-datepicker" data-format="y-m-d" data-date="today"></div>
+                <div class="bfh-datepicker" data-format="y-m-d" data-date="today" ng-model="leave.to"></div>
                 </p>
             </div>
 

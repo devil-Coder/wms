@@ -1,4 +1,4 @@
-var app = angular.module('wms',["ngRoute"]);
+var app = angular.module('wms',['ngRoute','ngCookies']);
 
 app.config(function($routeProvider){
     $routeProvider.when("/",{
@@ -9,7 +9,6 @@ app.config(function($routeProvider){
             templateUrl : "/ejs/dashboard/payslip.ejs"
         })
     .when("/bank",{
-        controller : "wmsctrl",
         templateUrl : "/ejs/dashboard/bank.ejs"
     })
         .when("/leave",{
@@ -21,7 +20,7 @@ app.config(function($routeProvider){
     });
 });
 
-app.controller('wmsctrl',['$scope','$http','$location','$routeParams','$interval','$timeout',function ($scope,$http,$location,$routeParams,$interval,$timeout) {
+app.controller('wmsctrl',['$scope','$http','$location','$routeParams','$interval','$timeout','$cookies',function ($scope,$http,$location,$routeParams,$interval,$timeout,$cookies) {
 
     console.log("controller loaded");
     $scope.getregistered = function () {
@@ -77,15 +76,24 @@ app.controller('wmsctrl',['$scope','$http','$location','$routeParams','$interval
             console.log("Data could not be Obtained !" + error);
         }
     }
+    $scope.getUserInfo=()=>{
+        $http.get('/user').then(successCallback, errorCallback);
 
+        function successCallback(response) {
+            $scope.user = response.data;
+        }
+        function errorCallback(error) {
+            console.log("Data could not be Obtained !" + error);
+        }
+    }
     $scope.setPin = ()=>{
-        if($scope.workerData.pin.length>6  || $scope.workerData.pin.length<4 ){
+        if($scope.user.pin.length>6  || $scope.user.pin.length<4 ){
             $scope.message = {
                 content : "PIN must be 4-6 character long!",
                 error : true
             };
         }else{
-            $http.post('/updatepin',$scope.workerData).then(successCallback, errorCallback);
+            $http.post('/updatepin',$scope.user).then(successCallback, errorCallback);
 
             function successCallback(response) {
                 $scope.pinData = response.data;
@@ -104,6 +112,27 @@ app.controller('wmsctrl',['$scope','$http','$location','$routeParams','$interval
             function errorCallback(error) {
                 console.log("Data could not be Obtained !" + error);
             }
+        }
+    }
+    $scope.applyLeave = ()=>{
+        $http.post('/applyleave',$scope.leaveDates).then(successCallback, errorCallback);
+
+        function successCallback(response) {
+            $scope.leaveData = response.data;
+            if($scope.leaveData.code ==0){
+                $scope.message = {
+                    content : $scope.leaveData.message,
+                    error : false
+                };
+            }else{
+                $scope.message = {
+                    content : $scope.leaveData.message,
+                    error : true
+                }
+            }
+        }
+        function errorCallback(error) {
+            console.log("Data could not be Obtained !" + error);
         }
     }
 }]);
