@@ -4,7 +4,7 @@
 var mongoose=require("mongoose");
 
 var leaveSchema=new mongoose.Schema({
-    Applicant : {
+    applicant : {
         name : String,
         email : String,
         worksAs : String
@@ -13,6 +13,7 @@ var leaveSchema=new mongoose.Schema({
         from : String,
         to : String
     },
+    reason : String,
     status : {type : Boolean, default : false}
 });
 

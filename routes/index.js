@@ -109,11 +109,11 @@ router.post('/applyleave', function(req, res, next) {
                 from : new Date(req.body.from).getTime(),
                 to : new Date(req.body.to).getTime()
             };
-            console.log(dates.to - dates.from);
             var leaveData = new leave({
                 'applicant.name' : userData.name,
                 'applicant.email' : userData.email,
                 'applicant.worksAs' : userData.appliedFor,
+                reason : req.body.reason,
                 'dates.to' : dates.from,
                 'dates.from' : dates.to
             });
@@ -128,4 +128,54 @@ router.post('/applyleave', function(req, res, next) {
     })
 });
 
+router.get('/admin', function(req, res, next) {
+    res.render('admin');
+});
+
+router.get('/fetchLeave', function(req, res, next) {
+    leave.find({},(err,allLeave)=>{
+        if(err)
+            console.log(err);
+        else
+            res.send(allLeave);
+    })
+});
+
+router.post('/approveLeave', function(req, res, next) {
+    leave.update({_id : req.body.leaveID},{status : true},(error,doc)=>{
+        if(error) {
+            console.log(error);
+        }
+        else
+        {
+            console.log(req.body);
+            var totalLeave = (req.body.to - req.body.from)/86400;
+            worker.update({email: req.body.email}, {$inc : {numberOfLeave : totalLeave}}, (e, done) => {
+            if(e) {
+                console.log(e);
+            }
+            else
+            {
+                leave.find({}, (e, docs) => {
+                    res.send(docs);
+                    });
+                }
+            });
+        }
+    });
+});
+
+router.post('/deleteLeave', function(req, res, next) {
+    leave.findOne({_id : req.body.leaveID},(err,data)=>{
+        console.log(data);
+        if(err)
+            console.log(err);
+        else{
+            data.remove();
+            leave.find({},(e,docs)=>{
+                res.send(docs);
+            });
+        }
+    })
+});
 module.exports = router;

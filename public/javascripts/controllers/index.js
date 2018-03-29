@@ -137,4 +137,45 @@ app.controller('wmsctrl',['$scope','$http','$location','$routeParams','$interval
             console.log("Data could not be Obtained !" + error);
         }
     }
+
+    $scope.getLeave = ()=>{
+        $http.get('/fetchleave').then(successCallback, errorCallback);
+
+        function successCallback(response) {
+            $scope.leaves = response.data;
+        }
+        function errorCallback(error) {
+            console.log("Data could not be Obtained !" + error);
+        }
+    }
+
+    $scope.approveLeave = (id,email,from,to)=>{
+        var data = {
+            leaveID :id,
+            email : email,
+            from : from,
+            to : to
+        }
+        console.log(data);
+        $http.post('/approveLeave',data).then(successCallback, errorCallback);
+
+        function successCallback(response) {
+            $scope.leaves = response.data;
+            console.log($scope.leaves);
+        }
+        function errorCallback(error) {
+            console.log("Data could not be Obtained !" + error);
+        }
+    }
+
+    $scope.deleteLeave = (id,email)=>{
+        $http.post('/deleteLeave',{leaveID : id,email:email}).then(successCallback, errorCallback);
+
+        function successCallback(response) {
+            $scope.leaves = response.data;
+        }
+        function errorCallback(error) {
+            console.log("Data could not be Obtained !" + error);
+        }
+    }
 }]);

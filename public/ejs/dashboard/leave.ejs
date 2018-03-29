@@ -16,11 +16,16 @@
 
             <div>
                 <label for="from">From : </label>
-                <input type="date" id="from" class="bfh-datepicker" data-format="y-m-d" data-date="today" ng-model="leaveDates.from"></input>
+                <input class="form-control" type="date" id="from" class="bfh-datepicker" data-format="y-m-d" data-date="today" ng-model="leaveDates.from"></input>
             </div>
             <div>
                 <label for="to">To : </label>
-                <input type="date" id="from" class="bfh-datepicker" data-format="y-m-d" data-date="today" ng-model="leaveDates.to"></input>
+                <input class="form-control" type="date" id="from" class="bfh-datepicker" data-format="y-m-d" data-date="today" ng-model="leaveDates.to"></input>
+            </div>
+
+            <div>
+                <label for="to">Mention Reason for leave : </label>
+                <textarea class="form-control" type="text" ng-model="leaveDates.reason" placeholder="Because ..."></textarea>
             </div>
 
             <div ng-if="message.content">
