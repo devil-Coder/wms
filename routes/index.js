@@ -121,8 +121,8 @@ router.post('/applyleave', function(req, res, next) {
                 'applicant.email' : userData.email,
                 'applicant.worksAs' : userData.appliedFor,
                 reason : req.body.reason,
-                'dates.to' : dates.from,
-                'dates.from' : dates.to
+                'dates.to' : dates.to,
+                'dates.from' : dates.from
             });
             leaveData.save((err,done)=>{
                 if(err){
