@@ -123,6 +123,17 @@ app.controller('wmsctrl',['$scope','$http','$location','$routeParams','$interval
             }
         }
     }
+    $scope.getLeaveData = ()=>{
+        $http.get('/applyleave').then(successCallback, errorCallback);
+
+        function successCallback(response) {
+            $scope.prevLeave = response.data;
+            console.log($scope.prevLeave);
+        }
+        function errorCallback(error) {
+            console.log("Data could not be Obtained !" + error);
+        }
+    }
     $scope.applyLeave = ()=>{
         $http.post('/applyleave',$scope.leaveDates).then(successCallback, errorCallback);
 

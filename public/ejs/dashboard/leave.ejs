@@ -2,7 +2,7 @@
 <link href="./assets/vendors/form-helpers/css/bootstrap-formhelpers.min.css" rel="stylesheet">
 <link href="./assets/vendors/select/bootstrap-select.min.css" rel="stylesheet">
 <link href="./assets/vendors/tags/css/bootstrap-tags.css" rel="stylesheet">
-<div class="col-md-12">
+<div class="col-md-12" ng-init="getLeaveData()">
     <form class="content-box-large" ng-submit="applyLeave()">
         <div class="panel-heading">
             <div class="panel-title">Apply for Leave</div>
@@ -38,7 +38,28 @@
                 <button class="btn btn-primary signup"type="submit" >Apply</button>
             </div>
         </div>
-
+        <h4><u>Previous Leaves</u></h4>
+        <p ng-if="prevLeave.length==0">Previous records found. Looks like you have not applied for leave before. Great!</p>
+        <table class="table table-striped" ng-if="prevLeave.length>0">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Reason</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="leave in prevLeave">
+                <th scope="row">{{$index+1}}</th>
+                <td>{{leave.reason}}</td>
+                <td>{{leave.dates.from | date}}</td>
+                <td>{{leave.dates.to | date}}</td>
+                <td><span ng-if="leave.status">Approved</span><span ng-if="!leave.status">Pending</span></td>
+            </tr>
+            </tbody>
+        </table>
 
     </form>
 </div>

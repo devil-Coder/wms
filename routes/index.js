@@ -103,6 +103,19 @@ router.post('/updatepin', function(req, res, next) {
         }
     })
 });
+
+router.get('/applyleave', function(req, res, next) {
+    var userData = req.cookies['wms'];
+    leave.find({ 'applicant.email' : userData.email},(e,leaveData)=>{
+        if(e)
+            console.log(e);
+        else{
+                console.log(leaveData);
+                res.send(leaveData);
+            }
+        })
+});
+
 router.post('/applyleave', function(req, res, next) {
     var userData = req.cookies['wms'];
     worker.findOne({accountNumber : userData.accountNumber},(err,user)=>{
