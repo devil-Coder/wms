@@ -1,0 +1,51 @@
+<!-- Header -->
+<div id="header">
+    <div class="shell">
+        <!-- Logo + Top Nav -->
+        <div id="top">
+            <h1><a href="#">Admin Login</a></h1>
+            <!--<div id="top-navigation"> Welcome <a href="#"><strong>Administrator</strong></a> <span>|</span> <a href="/logout">Log out</a> </div>-->
+        </div>
+        <!-- End Logo + Top Nav -->
+        <!-- Main Nav -->
+        <!--<div id="navigation">-->
+            <!--<ul>-->
+                <!--<li><a href="#!\dashboard" class="active"><span>Dashboard</span></a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- End Main Nav -->
+    </div>
+</div>
+<!-- End Header -->
+<!-- Container -->
+<div id="container">
+    <div class="shell">
+        <div id="main">
+            <div class="cl">&nbsp;</div>
+            <!-- Content -->
+            <div id="content">
+                <!-- Box -->
+                <div class="box">
+                    <!-- Box Head -->
+                    <div class="box-head">
+                        <h2 class="center">Login</h2>
+                        <!--<div class="right">-->
+                        <!--<label>search employee/manager</label>-->
+                        <!--<input type="text" class="field small-field" />-->
+                        <!--<input type="submit" class="button" value="search" ng-model="searchBox"/>-->
+                        <!--</div>-->
+                    </div>
+                    <!-- End Box Head -->
+                   <form ng-submit="verifyAdmin(admin)" style="padding: 10%;" align="center">
+                       USERNAME : <input type="text" name="uname" ng-model="admin.uname" placeholder="Username"><br><br>
+                       PASSWORD : <input type="password" name="password" ng-model="admin.password" placeholder="Password"><br><br>
+                       <p align="center"><b>{{message}}</b></p><br>
+                       <button type="submit">Submit</button>
+                       <br>
+                   </form>
+                </div>
+                <!-- End Box -->
+                <!-- Box -->
+                <!-- End Container -->
+                <!-- Footer -->
+                <!-- End Footer -->

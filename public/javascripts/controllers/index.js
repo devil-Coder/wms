@@ -15,6 +15,13 @@ app.config(function($routeProvider){
             controller : "wmsctrl",
             templateUrl : "/ejs/dashboard/leave.ejs"
         })
+        .when("/login",{
+            templateUrl : "/ejs/admin/login.ejs"
+        })
+        .when("/dashboard",{
+            controller : "wmsctrl",
+            templateUrl : "/ejs/admin/dashboard.ejs"
+        })
         .otherwise({
         template : "URL not found !"
     });
@@ -82,6 +89,7 @@ app.controller('wmsctrl',['$scope','$http','$location','$routeParams','$interval
         function successCallback(response) {
             $scope.user = response.data;
             $scope.user.netSalary = $scope.user.dailyPay*30 - ($scope.user.numberOfLeave*50);
+            console.log($scope.user);
         }
         function errorCallback(error) {
             console.log("Data could not be Obtained !" + error);
@@ -135,6 +143,18 @@ app.controller('wmsctrl',['$scope','$http','$location','$routeParams','$interval
         }
         function errorCallback(error) {
             console.log("Data could not be Obtained !" + error);
+        }
+    }
+    $scope.getLoginPage = ()=>{
+        $location.path('/login');
+    }
+    $scope.verifyAdmin = (admin)=>{
+        console.log(admin);
+        if(admin.uname == 'admin' && admin.password == 'admin'){
+            $scope.message = 'success';
+            $location.path('/dashboard');
+        }else{
+            $scope.message = "Invalid credentials";
         }
     }
 

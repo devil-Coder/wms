@@ -44,7 +44,7 @@ h3 a{ text-decoration: none; }
 
 .shell { width:988px; margin:0 auto; }
 
-#header { height:89px; background:url(images/header.gif); white-space:nowrap; }
+#header { height:89px; background:url('images/header.gif'); white-space:nowrap; }
 #header h1{ float:left; display:inline; padding-top:12px; }
 #top-navigation { float:right; white-space:nowrap; color:#fff; padding-top:15px; }
 #top-navigation a{ color:#fff; }
@@ -55,7 +55,7 @@ h3 a{ text-decoration: none; }
 #navigation ul{ list-style-type: none;}
 #navigation ul li{ float:left; display:inline; margin-right:2px;}
 #navigation ul li a,
-#navigation ul li a span { float:left; height:36px; background:url(images/tab.gif) no-repeat 0 0; padding:0 0 0 15px;}
+#navigation ul li a span { float:left; height:36px; background:url('/images/tab.gif') no-repeat 0 0; padding:0 0 0 15px;}
 #navigation ul li a span { background-position:right 0; padding:0 15px 0 0;}
 #navigation ul li a { line-height:36px; color:#907525; text-decoration: none; }
 

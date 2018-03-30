@@ -14,72 +14,8 @@
     <script language="javascript" type="text/javascript" src="/javascripts/controllers/index.js"></script>
 
 </head>
-<body>
-<!-- Header -->
-<div id="header">
-    <div class="shell">
-        <!-- Logo + Top Nav -->
-        <div id="top">
-            <h1><a href="#">Admin</a></h1>
-            <div id="top-navigation"> Welcome <a href="#"><strong>Administrator</strong></a> <span>|</span> <a href="/logout">Log out</a> </div>
-        </div>
-        <!-- End Logo + Top Nav -->
-        <!-- Main Nav -->
-        <div id="navigation">
-            <ul>
-                <li><a href="#" class="active"><span>Dashboard</span></a></li>
-            </ul>
-        </div>
-        <!-- End Main Nav -->
-    </div>
-</div>
-<!-- End Header -->
-<!-- Container -->
-<div id="container">
-    <div class="shell">
-        <div id="main">
-            <div class="cl">&nbsp;</div>
-            <!-- Content -->
-            <div id="content" ng-init="getLeave()">
-                <!-- Box -->
-                <div class="box">
-                    <!-- Box Head -->
-                    <div class="box-head">
-                        <h2 class="left">Curren Leave</h2>
-                        <div class="right">
-                            <label>search employee/manager</label>
-                            <input type="text" class="field small-field" />
-                            <input type="submit" class="button" value="search" ng-model="searchBox"/>
-                        </div>
-                    </div>
-                    <!-- End Box Head -->
-                    <!-- Table -->
-                    <div class="table">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <th>Applied by</th>
-                                <th>Date</th>
-                                <th>Reason</th>
-                                <th width="110" class="ac">Content Control</th>
-                            </tr>
-                            <tr ng-repeat="leave in leaves | filter: searchBox">
-                                <td>{{leave.applicant.name | uppercase}}</td>
-                                <td>{{leave.dates.from | date}} - {{leave.dates.to | date}} </td>
-                                <td><h3>{{leave.reason | uppercase}}</h3></td>
-                                <td>
-                                    <span class="ico del"><button ng-click="deleteLeave(leave._id,leave.applicant.email)">Delete</button></span>
-                                    <span> | </span>
-                                    <span class="ico edit" ng-if="leave.status==false"><button ng-click="approveLeave(leave._id,leave.applicant.email,leave.dates.from,leave.dates.to)">Approve</button></span>
-                                    <span class="ico edit" ng-if="leave.status" style="color : green;">Approved</span>
-                                </td>
-                            </tr>
-                    </div>
-                    <!-- Table -->
-                </div>
-                <!-- End Box -->
-                <!-- Box -->
-                <!-- End Container -->
-                <!-- Footer -->
-                <!-- End Footer -->
+<body ng-init="getLoginPage()">
+<div ng-view></div>
+
 </body>
 </html>

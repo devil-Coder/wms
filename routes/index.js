@@ -57,7 +57,14 @@ router.get('/dashboard', function(req, res, next) {
 });
 
 router.get('/user', function(req, res, next) {
-    res.send(req.cookies['wms']);
+    var user = req.cookies['wms'];
+    worker.findOne({email : user.email},(err,doc)=>{
+        if(err)
+            console.log(err);
+        else{
+            res.send(doc);
+        }
+    })
 });
 
 router.post('/dashboard', function(req, res, next) {
@@ -149,7 +156,7 @@ router.post('/approveLeave', function(req, res, next) {
         else
         {
             console.log(req.body);
-            var totalLeave = (req.body.to - req.body.from)/86400;
+            var totalLeave = (req.body.to - req.body.from)/86400000;
             worker.update({email: req.body.email}, {$inc : {numberOfLeave : totalLeave}}, (e, done) => {
             if(e) {
                 console.log(e);
